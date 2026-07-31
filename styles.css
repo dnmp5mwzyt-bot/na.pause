@@ -142,7 +142,8 @@ h1{font-size:clamp(2.7rem,7.6vw,6rem)}
 .stats dd{font-size:.83rem;line-height:1.35;max-width:14ch;margin-top:6px;color:color-mix(in srgb,var(--ink) 65%,transparent)}
 
 /* арт */
-.hero__art{position:relative;display:grid;place-items:center}
+/* нижний отступ — место для плашки «можно с собакой», чтобы она не легла на логотип */
+.hero__art{position:relative;display:grid;place-items:start center;padding-bottom:48px}
 .art__disc{
   position:relative;width:min(100%,470px);aspect-ratio:1;border-radius:50%;overflow:hidden;
   background:var(--blush);
@@ -160,11 +161,11 @@ h1{font-size:clamp(2.7rem,7.6vw,6rem)}
 }
 .sticker b{font-weight:900;font-size:.92rem;display:block}
 .sticker--1{top:4%;right:-2%;transform:rotate(7deg);background:var(--butter);color:var(--blue-2)}
-.sticker--2{bottom:8%;left:-4%;transform:rotate(-6deg)}
+.sticker--2{bottom:0;left:1%;transform:rotate(-5deg)}
 
 .doodle{position:absolute;fill:none;stroke:var(--blue);stroke-width:3.4;stroke-linecap:round;opacity:.3}
 .doodle--steam{width:52px;top:-14px;left:14%}
-.doodle--bean{width:78px;bottom:-8px;right:8%;opacity:.22}
+.doodle--bean{width:78px;bottom:30px;right:8%;opacity:.22}
 
 /* ═══════ БЕГУЩАЯ СТРОКА ═══════ */
 .ticker{overflow:hidden;background:var(--blue);color:var(--blush);padding:15px 0;position:relative;z-index:2}
@@ -356,8 +357,12 @@ h1{font-size:clamp(2.7rem,7.6vw,6rem)}
   .card p{font-size:.93rem;line-height:1.45}
   .card .link{margin-top:10px;font-size:.92rem}
 
+  /* на узких экранах круг мельче — уводим плашку целиком под него */
+  .hero__grid{gap:26px}
+  .hero__art{padding-bottom:66px}
   .sticker--1{right:-4px;font-size:.72rem}
-  .sticker--2{left:-8px;font-size:.72rem}
+  .sticker--2{left:0;font-size:.72rem}
+  .doodle--bean{bottom:48px}
   .menu li{display:grid;grid-template-columns:1fr auto;gap:3px 14px;padding:16px 14px}
   .menu li:hover{transform:none}
   .menu li i{display:none}
