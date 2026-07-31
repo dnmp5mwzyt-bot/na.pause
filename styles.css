@@ -142,30 +142,40 @@ h1{font-size:clamp(2.7rem,7.6vw,6rem)}
 .stats dd{font-size:.83rem;line-height:1.35;max-width:14ch;margin-top:6px;color:color-mix(in srgb,var(--ink) 65%,transparent)}
 
 /* арт */
-/* нижний отступ — место для плашки «можно с собакой», чтобы она не легла на логотип */
-.hero__art{position:relative;display:grid;place-items:start center;padding-bottom:48px}
+.hero__art{display:grid;place-items:center}
+/* .art задаёт систему координат ровно по кругу — от неё считаются плашки */
+.art{
+  position:relative;width:min(100%,470px);aspect-ratio:1;
+  container-type:inline-size;   /* размеры плашек считаются от диаметра круга */
+  --sx:-3%;   /* вылет плашки за край круга по горизонтали */
+  --sy:2%;    /* отступ плашки от края круга по вертикали */
+  animation:float 7s ease-in-out infinite;
+}
 .art__disc{
-  position:relative;width:min(100%,470px);aspect-ratio:1;border-radius:50%;overflow:hidden;
+  position:absolute;inset:0;border-radius:50%;overflow:hidden;
   background:var(--blush);
   box-shadow:0 30px 70px -30px rgb(37 51 130/.45), inset 0 0 0 1.5px rgb(37 51 130/.1);
-  animation:float 7s ease-in-out infinite;
 }
 .art__disc img{width:100%;height:100%;object-fit:cover;transform:scale(1.02)}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 
 .sticker{
-  position:absolute;z-index:3;
-  font-size:.78rem;font-weight:600;line-height:1.25;text-align:center;
-  padding:12px 16px;border-radius:16px;background:var(--paper);color:var(--blue);
+  position:absolute;z-index:3;box-sizing:border-box;
+  width:clamp(104px,30cqw,146px);
+  padding:clamp(8px,2.6cqw,13px) clamp(10px,3cqw,15px);
+  font-size:clamp(.68rem,2.9cqw,.84rem);font-weight:600;line-height:1.25;text-align:center;
+  border-radius:clamp(12px,3.4cqw,17px);background:var(--paper);color:var(--blue);
   box-shadow:0 10px 26px -10px rgb(37 51 130/.4);
 }
-.sticker b{font-weight:900;font-size:.92rem;display:block}
-.sticker--1{top:4%;right:-2%;transform:rotate(7deg);background:var(--butter);color:var(--blue-2)}
-.sticker--2{bottom:0;left:1%;transform:rotate(-5deg)}
+.sticker b{font-weight:900;font-size:clamp(.78rem,3.4cqw,.98rem);display:block}
+/* обе плашки одного размера и заходят на круг одинаково:
+   позиции зеркальны относительно центра (--sx/--sy), поэтому перекрытие совпадает */
+.sticker--1{top:var(--sy);right:var(--sx);transform:rotate(7deg);background:var(--butter);color:var(--blue-2)}
+.sticker--2{bottom:var(--sy);left:var(--sx);transform:rotate(-7deg)}
 
 .doodle{position:absolute;fill:none;stroke:var(--blue);stroke-width:3.4;stroke-linecap:round;opacity:.3}
-.doodle--steam{width:52px;top:-14px;left:14%}
-.doodle--bean{width:78px;bottom:30px;right:8%;opacity:.22}
+.doodle--steam{width:52px;top:-6px;left:12%}
+.doodle--bean{width:78px;bottom:-3%;right:7%;opacity:.22}
 
 /* ═══════ БЕГУЩАЯ СТРОКА ═══════ */
 .ticker{overflow:hidden;background:var(--blue);color:var(--blush);padding:15px 0;position:relative;z-index:2}
@@ -313,7 +323,9 @@ h1{font-size:clamp(2.7rem,7.6vw,6rem)}
 /* ═══════ АДАПТИВ ═══════ */
 @media (max-width:1000px){
   .hero__grid{grid-template-columns:1fr;gap:44px}
-  .hero__art{order:-1;max-width:400px;margin-inline:auto}
+  /* width:100% обязателен: круг внутри .art позиционирован абсолютно и
+     не даёт контейнеру собственной ширины — без него колонка схлопнется в 0 */
+  .hero__art{order:-1;width:100%;max-width:400px;justify-self:center}
   .stats{justify-content:space-between}
   .cards{grid-template-columns:repeat(4,1fr)}
   .card,.card--wide{grid-column:span 2}
@@ -357,12 +369,9 @@ h1{font-size:clamp(2.7rem,7.6vw,6rem)}
   .card p{font-size:.93rem;line-height:1.45}
   .card .link{margin-top:10px;font-size:.92rem}
 
-  /* на узких экранах круг мельче — уводим плашку целиком под него */
-  .hero__grid{gap:26px}
-  .hero__art{padding-bottom:66px}
-  .sticker--1{right:-4px;font-size:.72rem}
-  .sticker--2{left:0;font-size:.72rem}
-  .doodle--bean{bottom:48px}
+  /* круг мельче, а текст плашки не может ужиматься бесконечно —
+     опускаем обе плашки ниже, чтобы нижняя не задевала «паузе» */
+  .art{--sx:-2%;--sy:-1%}
   .menu li{display:grid;grid-template-columns:1fr auto;gap:3px 14px;padding:16px 14px}
   .menu li:hover{transform:none}
   .menu li i{display:none}
