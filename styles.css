@@ -249,11 +249,13 @@ h1{font-size:clamp(2.7rem,7.6vw,6rem)}
 .card:hover{transform:translateY(-6px);box-shadow:0 22px 48px -22px rgb(37 51 130/.35);border-color:color-mix(in srgb,var(--blue) 26%,transparent)}
 .card--wide{grid-column:span 3}
 .card--accent{background:var(--blue);border-color:var(--blue)}
-.card--accent h3,.card--accent .ico{color:var(--blush);stroke:var(--blush)}
-.card--accent p{color:var(--blush)}
 .ico{width:42px;height:42px;fill:none;stroke:var(--blue);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;margin-bottom:20px}
 .card h3{font-size:clamp(1.15rem,2vw,1.45rem);margin-bottom:12px;line-height:1.12}
 .card p{font-size:.97rem;color:color-mix(in srgb,var(--ink) 72%,transparent)}
+/* ниже .card p — иначе при равной специфичности перебивает правило выше
+   и текст на синей карточке остаётся тёмным */
+.card--accent h3,.card--accent .ico{color:var(--paper);stroke:var(--paper)}
+.card--accent p{color:var(--cream)}
 .link{display:inline-block;margin-top:16px;font-weight:700;color:var(--butter)}
 .link:hover{text-decoration:underline}
 
