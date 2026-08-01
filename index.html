@@ -121,9 +121,13 @@
     <header class="sec__head reveal">
       <p class="kicker">Меню</p>
       <h2>Что налить<br>и чем закусить</h2>
-      <p class="sec__note">Альтернативное молоко — миндальное, банановое, кокосовое.<br>Без доплаты за вашу привычку.</p>
+      <p class="sec__note" id="menu-note">Альтернативное молоко — миндальное, банановое, кокосовое.<br>Без доплаты за вашу привычку.</p>
     </header>
 
+    <!-- Содержимое ниже перерисовывается из /api/menu.
+         Статическая разметка остаётся запасным вариантом: её видят
+         поисковики и посетители с выключенным JS. -->
+    <div id="menu-live">
     <div class="tabs reveal" role="tablist" aria-label="Разделы меню">
       <button class="tab is-on" role="tab" aria-selected="true"  aria-controls="p-coffee"  id="t-coffee">Кофе и напитки</button>
       <button class="tab"       role="tab" aria-selected="false" aria-controls="p-sweets"  id="t-sweets">Десерты</button>
@@ -155,6 +159,7 @@
         <li><span class="menu__n">Сэндвич</span><span class="menu__v">на гриле</span><i></i><span class="menu__p">от 270&nbsp;₽</span></li>
         <li><span class="menu__n">Ролл</span><span class="menu__v">с собой или на месте</span><i></i><span class="menu__p">от 270&nbsp;₽</span></li>
       </ul>
+    </div>
     </div>
 
     <p class="menu__foot reveal">

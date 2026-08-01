@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Меню — панель управления · На паузе</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#253382">
+
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ══════════ ВХОД ══════════ -->
+<main class="gate" id="gate" hidden>
+  <form class="gate__card" id="login-form" autocomplete="on">
+    <img class="gate__logo" src="assets/logo.png" alt="" width="64" height="64">
+    <h1>Панель управления меню</h1>
+    <p class="gate__sub">Кофейня «На паузе»</p>
+
+    <label class="field">
+      <span>Пароль администратора</span>
+      <input type="password" id="password" name="password" autocomplete="current-password" required>
+    </label>
+
+    <p class="msg msg--err" id="login-error" hidden></p>
+    <button class="btn btn--primary" type="submit" id="login-btn">Войти</button>
+  </form>
+</main>
+
+<!-- ══════════ РЕДАКТОР ══════════ -->
+<div class="app" id="app" hidden>
+
+  <header class="bar">
+    <div class="bar__left">
+      <img src="assets/logo.png" alt="" width="34" height="34">
+      <strong>Меню</strong>
+      <span class="state" id="state">загружаем…</span>
+    </div>
+    <div class="bar__right">
+      <a class="btn btn--ghost btn--sm" href="/" target="_blank" rel="noopener">Открыть сайт</a>
+      <button class="btn btn--ghost btn--sm" type="button" id="logout">Выйти</button>
+      <button class="btn btn--primary btn--sm" type="button" id="save" disabled>Сохранить</button>
+    </div>
+  </header>
+
+  <p class="msg msg--warn" id="setup-warning" hidden></p>
+  <p class="msg" id="flash" hidden></p>
+
+  <main class="sheet">
+
+    <section class="block">
+      <div class="block__head">
+        <h2>Разделы</h2>
+        <button class="btn btn--ghost btn--sm" type="button" id="add-cat">+ Раздел</button>
+      </div>
+      <div class="cats" id="cats"></div>
+    </section>
+
+    <section class="block">
+      <div class="block__head">
+        <h2 id="cat-caption">Позиции</h2>
+        <div class="block__actions">
+          <button class="btn btn--ghost btn--sm" type="button" id="rename-cat">Переименовать раздел</button>
+          <button class="btn btn--ghost btn--sm btn--danger" type="button" id="del-cat">Удалить раздел</button>
+        </div>
+      </div>
+
+      <div class="rows" id="rows"></div>
+      <button class="btn btn--dash" type="button" id="add-item">+ Добавить позицию</button>
+    </section>
+
+    <section class="block">
+      <div class="block__head"><h2>Подпись под заголовком меню</h2></div>
+      <textarea id="note" class="note" rows="2" maxlength="300"
+        placeholder="Например: альтернативное молоко без доплаты"></textarea>
+      <p class="hint">Показывается на сайте под заголовком «Что налить и чем закусить». Перенос строки — Enter.</p>
+    </section>
+
+    <section class="block block--muted">
+      <div class="block__head"><h2>Служебное</h2></div>
+      <div class="block__actions">
+        <button class="btn btn--ghost btn--sm" type="button" id="reload">Отменить правки</button>
+        <button class="btn btn--ghost btn--sm" type="button" id="download">Скачать JSON</button>
+      </div>
+      <p class="hint" id="meta"></p>
+    </section>
+
+  </main>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
