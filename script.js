@@ -1,4 +1,4 @@
-/* На паузе — интерактив */
+/* Monté Coffee House — интерактив */
 (function () {
   'use strict';
 

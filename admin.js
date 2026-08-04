@@ -1,8 +1,8 @@
-/* На паузе — панель управления меню */
+/* Monté Coffee House — панель управления меню */
 (function () {
   'use strict';
 
-  var TOKEN_KEY = 'napauze.token';
+  var TOKEN_KEY = 'monte.token';
   var $ = function (id) { return document.getElementById(id); };
 
   var state = {

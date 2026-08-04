@@ -5,7 +5,7 @@
 
 const crypto = require('node:crypto');
 
-const KEY = 'napauze:menu';
+const KEY = 'monte:menu';
 
 /* Меню по умолчанию. Отдаётся, пока в хранилище ничего не сохранено,
    и совпадает со статической разметкой в index.html (она — запасной
@@ -88,7 +88,7 @@ async function writeMenu(menu) {
 
 /* Секрет сессии выводится из пароля: смена пароля разлогинивает всех. */
 function sessionSecret() {
-  return crypto.createHash('sha256').update('na-pauze/session/' + (process.env.ADMIN_PASSWORD || '')).digest();
+  return crypto.createHash('sha256').update('monte/session/' + (process.env.ADMIN_PASSWORD || '')).digest();
 }
 
 function sameString(a, b) {

@@ -26,7 +26,7 @@ module.exports = async function handler(req, res) {
     return lib.json(res, 503, { error: 'Пароль администратора не задан в переменных окружения' });
   }
 
-  const key = 'napauze:login-fail:' + clientIp(req);
+  const key = 'monte:login-fail:' + clientIp(req);
 
   try {
     if (lib.storeConfig()) {
